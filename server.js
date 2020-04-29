@@ -22,10 +22,19 @@ app.get('/',function(req,res)
 //post request from the application
 app.post('/submitRar',function(req,res){
     console.log(req.body);
-    res.status(200).send({"message":"data received success"});
-    //res.send("Thank you for your submission");
-    //res.sendFile()
-})
+    //res.status(200).send({"message":"data received success return from the express server"});
+    res.writeHead(200, {"Content-Type": "application/json"});
+    
+    var sampleArray = ["Array Item 01", "Array Item 02"];
+    var sampleObject = { item1: "venkatS", item2: "sriram.venkataramani@trgc.com" };
+    var json = JSON.stringify({ 
+    
+    anObject: sampleObject, 
+    anArray: sampleArray, 
+    another: "TFS"
+  });
+  res.end(json);
+  })
 
 app.listen(PORT,function(){
     console.log("Server running successfully on port " + PORT);
